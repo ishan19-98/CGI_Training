@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Account Management System</title>
+</head>
+<body>
+<span th:text="${msg}" style="color:red"></span>
+<h2>Create Account</h2>
+<form th:object="${account}"  th:action="@{/storeaccountdetails}" method="post">
+	<label>Account Number: </label>
+	<input type="number" th:field="*{accno}"><br/><br/>
+	<label>Customer Name: </label>
+	<input type="text" th:field="*{name}"><br/><br/>
+	<label>Amount: </label>
+	<input type="number" th:field="*{amount}"><br/><br/>
+	<input type="submit" value="Create" name="submitButton"/>
+	<input type="reset" value="reset"/>
+</form>
+<hr/>
+<span th:text="${msg1}" style="color:red"></span>
+<h2>Deposit Money</h2>
+<form th:object="${account}"  th:action="@{/deposit}" method="post">
+	<label>Account Number: </label>
+	<input type="number" th:field="*{accno}"><br/><br/>
+	<label>Customer Name: </label>
+	<input type="text" th:field="*{name}"><br/><br/>
+	<label>Amount To Be Deposited: </label>
+	<input type="number" th:field="*{amount}"><br/><br/>
+	<input type="submit" value="Deposit" name="submitButton"/>
+	<input type="reset" value="reset"/>
+</form>
+<hr/>
+<span th:text="${msg2}" style="color:red"></span>
+<h2>Withdraw Money</h2>
+<form th:object="${account}"  th:action="@{/withdraw}" method="post">
+	<label>Account Number: </label>
+	<input type="number" th:field="*{accno}"><br/><br/>
+	<label>Customer Name: </label>
+	<input type="text" th:field="*{name}"><br/><br/>
+	<label>Amount To Be Withdrawn </label>
+	<input type="number" th:field="*{amount}"><br/><br/>
+	<input type="submit" value="Withdraw" name="submitButton"/>
+	<input type="reset" value="reset"/>
+</form>
+<hr/>
+<span th:text="${msg3}" style="color:red"></span>
+<h2>Check Balance</h2>
+<form th:object="${account}"  th:action="@{/checkBalance}" method="get">
+	<label>Account Number: </label>
+	<input type="number" th:field="*{accno}"><br/><br/>
+	<input type="submit" value="Check Balance" name="submitButton"/>
+	<input type="reset" value="reset"/>
+</form>
+</body>
+</html>

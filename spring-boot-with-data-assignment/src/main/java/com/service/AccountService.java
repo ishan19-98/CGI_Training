@@ -64,7 +64,7 @@ public class AccountService {
 				} else
 					return "No Sufficient Amount Balance to withdraw entered amount";
 			} else {
-				return "Amount withdrawl failed! Your Account balance is less than 1000 Rupees";
+				return "Amount withdrawl failed! Your Account balance is less than 1001 Rupees";
 			}
 		}
 	}

@@ -20,7 +20,7 @@ public class Appointment {
 	public String did;
 	public String doctorName;
 	public float amount;
-	public LocalTime timeslot;
+	public String timeslot;
 	
 	public int getAid() {
 		return aid;
@@ -44,10 +44,10 @@ public class Appointment {
 	public void setDid(String did) {
 		this.did = did;
 	}
-	public LocalTime getTimeslot() {
+	public String getTimeslot() {
 		return timeslot;
 	}
-	public void setTimeslot(LocalTime timeslot) {
+	public void setTimeslot(String timeslot) {
 		this.timeslot = timeslot;
 	}
 	public void setAmount(float amount) {

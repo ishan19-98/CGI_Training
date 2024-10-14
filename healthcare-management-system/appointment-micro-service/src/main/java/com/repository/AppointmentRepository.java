@@ -19,9 +19,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	@Modifying
 	@Transactional
 	@Query("UPDATE Appointment a SET a.timeslot = :timeslot WHERE a.aid = :aid")
-    public void updateAppointmentTime(@Param("timeslot") LocalTime newtimeslot, @Param("aid") int aid);
+    public void updateAppointmentTime(@Param("timeslot") String newtimeslot, @Param("aid") int aid);
 	
 	@Query("Select a.timeslot from Appointment a WHERE a.aid = :id")
-	public LocalTime getSlotIdById(@Param("id") int id);
+	public String getSlotIdById(@Param("id") int id);
 
 }

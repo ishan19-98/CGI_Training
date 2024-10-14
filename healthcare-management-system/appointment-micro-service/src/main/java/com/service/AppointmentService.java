@@ -35,8 +35,8 @@ public class AppointmentService {
 			Doctor doctor = restTemplate.getForObject("http://DOCTOR-MICRO-SERVICE/doctor/findbyid/"+appointment.getDid(), Doctor.class);
             if(doctor != null)
             {
-            	LocalTime timeslot = appointment.getTimeslot();
-            	Slot slot = slotRepository.getSlotByTime(timeslot);
+            	String timeslot = appointment.getTimeslot();
+            	Slot slot = slotRepository.getSlotByTime(LocalTime.parse(timeslot));
             	if(!slot.isBookFlag())
             	{
             		appointment.setPatientName(patient.getPname());
@@ -75,15 +75,16 @@ public class AppointmentService {
 		}
 		else
 		{
-			LocalTime newtimeslot = appointment.getTimeslot();
-			LocalTime oldtimeslot = appointmentRepository.getSlotIdById(appointment.getAid());
-        	Slot newslot = slotRepository.getSlotByTime(newtimeslot);
-        	Slot oldslot = slotRepository.getSlotByTime(oldtimeslot);
+			String newtimeslot = appointment.getTimeslot();
+			String oldtimeslot = appointmentRepository.getSlotIdById(appointment.getAid());
+        	Slot newslot = slotRepository.getSlotByTime(LocalTime.parse(newtimeslot));
+        	Slot oldslot = slotRepository.getSlotByTime(LocalTime.parse(oldtimeslot));
         	if(!newslot.isBookFlag())
         	{
+        		Appointment appointmentnew=appointmentRepository.getById(appointment.getAid());
+        		slotRepository.updateSlotDetails(true, newslot.getSid(),Integer.parseInt(appointmentnew.getDid()));
+        		slotRepository.updateSlotDetails(false, oldslot.getSid(),Integer.parseInt(appointmentnew.getDid()));
         		appointmentRepository.updateAppointmentTime(newtimeslot, appointment.getAid());
-        		slotRepository.updateSlotDetails(true, newslot.getSid(),Integer.parseInt(appointment.getDid()));
-        		slotRepository.updateSlotDetails(false, oldslot.getSid(),Integer.parseInt(appointment.getDid()));
         		return "Slot Timings Updated Successfully";
         	}
         	else
@@ -103,8 +104,8 @@ public class AppointmentService {
 		}
 		else
 		{
-			LocalTime oldtimeslot = appointmentRepository.getSlotIdById(aid);
-        	Slot oldslot = slotRepository.getSlotByTime(oldtimeslot);
+			String oldtimeslot = appointmentRepository.getSlotIdById(aid);
+        	Slot oldslot = slotRepository.getSlotByTime(LocalTime.parse(oldtimeslot));
         	slotRepository.updateSlotDetails(false, oldslot.getSid(),Integer.parseInt(appointment.get().getDid()));
 			appointmentRepository.deleteById(aid);
 	        return "Appointment has been cancelled Successfully!";

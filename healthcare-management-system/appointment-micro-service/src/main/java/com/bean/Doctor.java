@@ -1,6 +1,7 @@
 package com.bean;
 
 import java.sql.Time;
+import java.time.LocalTime;
 
 public class Doctor {
 
@@ -8,12 +9,12 @@ public class Doctor {
 	public String dname;
 	public int age;
 	public long phoneno;
-	public Time[] slotAvailibility; 
+	public String[] slotAvailibility; 
 	
-	public Time[] getSlotAvailibility() {
+	public String[] getSlotAvailibility() {
 		return slotAvailibility;
 	}
-	public void setSlotAvailibility(Time[] slotAvailibility) {
+	public void setSlotAvailibility(String[] slotAvailibility) {
 		this.slotAvailibility = slotAvailibility;
 	}
 	public int getDid() {

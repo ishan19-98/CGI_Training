@@ -79,4 +79,24 @@ public class DoctorService {
 		}
 	}
 
+	public int updateSlotDetails(Doctor Doctor) {
+		Optional<Doctor> result = doctorRepository.findById(Doctor.getDid());
+		if(result.isEmpty())
+		{
+			return 0;
+		}
+		else
+		{
+			Doctor Doctornew = new Doctor();
+			Doctornew.setDid(Doctor.getDid());
+			Doctornew.setDname(Doctor.getDname());
+			Doctornew.setAge(Doctor.getAge());
+			Doctornew.setPhoneno(Doctor.getPhoneno());
+			Doctornew.setSlotAvailibility(Doctor.getSlotAvailibility());
+			doctorRepository.saveAndFlush(Doctornew);
+			return 1;
+			
+		}
+	}
+	
 }

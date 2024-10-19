@@ -53,6 +53,13 @@ public class DoctorController {
 		
 	}
 	
+	@PostMapping(value = "updateSlot",consumes = MediaType.APPLICATION_JSON)
+	public int updateSlotDetails(@RequestBody Doctor doctor)
+	{
+		return doctorService.updateSlotDetails(doctor);
+		
+	}
+	
 	
 
 }
